@@ -1,0 +1,4 @@
+(executable
+ (name focuswindow)
+ (public_name focuswindow)
+ (libraries core))

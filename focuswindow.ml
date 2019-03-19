@@ -104,8 +104,8 @@ let () =
                                      let wd = degree_to_direction @@ r2d @@ theta_of_windows focusw w in
                                      wd = d) in
   let sorted = List.sort ~compare:(fun w1 w2 ->
-                           let w1_distance = square_distance_of_windows w1 in
-                           let w2_distance = square_distance_of_windows w2 in
+                           let w1_distance = square_distance_of_windows focusw w1 in
+                           let w2_distance = square_distance_of_windows focusw w2 in
                            if w1_distance = w2_distance then
                              0
                            else if w1_distance > w2_distance then
@@ -115,8 +115,8 @@ let () =
                          ) directed_windows in
   begin
     match sorted with
-      w :: [] ->
-       let _ = command_to_string @@ "xdotool windowfocus " ^ w in
+      w :: _ ->
+       let _ = command_to_string @@ "xdotool windowactivate " ^ w ^ " windowraise " ^ w in
        ()
     | _ -> ()
   end

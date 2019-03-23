@@ -86,15 +86,18 @@ let show d =
   | Right -> "Right"
 
 let check_args () =
-  let d = Sys.argv.(1) in
-  let to_d = fun _d -> match _d with
-                         "up" -> Up
-                       | "down" -> Down
-                       | "left" -> Left
-                       | "right" -> Right
-                       | _ -> Up in
-  to_d d
-  
+  if (Array.length Sys.argv) = 1 then
+    Up
+  else
+    let d = Sys.argv.(1) in
+    let to_d = fun _d -> match _d with
+                           "up" -> Up
+                         | "down" -> Down
+                         | "left" -> Left
+                         | "right" -> Right
+                         | _ -> Up in
+    to_d d
+
 let () =
   let d = check_args () in
   let focusw = get_window_focus () in
